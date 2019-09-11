@@ -1,0 +1,166 @@
+/* Style appliqué au corps de la page */
+/*#app{
+	background-color:white;
+}*/
+
+/* style appliqué au carousel */
+.my-carousel{
+	margin-top:-23px;
+	margin-bottom:40px;
+}
+/* Style appliqué au titre des projets et catégories */
+.titleStyle{
+	font-weight: bold;
+	font-size:20px;
+	color:#006400;
+}
+
+/* Style appliqué au menu de navigation 36745b */
+
+
+/* Style appliqué aux images des projets en cours */
+.inner{
+	overflow:hidden;
+}
+
+.inner img{
+	transition: all 1.5s ease;
+}
+
+.inner:hover img{
+	transform: scale(1.5);
+}
+
+/* Style appliqué au pied de page */
+.footer{
+	padding:30px;
+	color:#90EE90;
+	background-color:#006400;
+}
+
+.footer .social{
+	font-size:20px;
+	height:30px;
+	width:30px;
+	text-align:center;
+	padding:5px;
+	margin-bottom: 10px;
+	margin-right:5px;
+}
+.titrePiedDePage{
+	font-weight:bold;
+
+}
+.liensPiedDePage{
+ 	color:#90EE90;
+ 	text-decoration: none;
+}
+
+.liensPiedDePage:hover{
+	color:white;
+	text-decoration: none;
+}
+
+.listeAPuce{
+	list-style-type: none;
+}
+
+
+#description{
+  margin: auto;
+  padding: 10px;
+  font-size: 1.2em;  
+  word-wrap: break-word; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#suivre{
+  font-size: 1em; 
+  font-weight: bold; 
+}
+.blocck{
+	border: 2px solid #eee;
+	border-radius: 6px;
+	height: 180px;
+	margin-top:15px;
+	margin-bottom: 15px;
+}
+
+#blocck{
+	border: 2px solid #eee;
+	border-radius: 6px;
+	height: 220px;
+	margin-top:15px;
+	margin-bottom: 15px;
+}
+#project_image{
+	height: 200px;
+	margin-top:7px;
+	width: 100%;
+}
+.box_paiement{
+	border: 2px solid #eee;
+	border-radius: 6px;
+	margin-top:15px;
+	margin-bottom: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+input[type="radio"]{
+	
+
+}
+
+.paiment_image{
+	width: 40px;
+	margin-top: -5px;
+
+}
+#la_volee{
+	background-color: black;
+    z-index: 1000; 
+    position: fixed;
+    cursor: wait;
+}
+#btn_mtn,#btn_orange{
+	border-radius: 5px;
+	background: green;
+	margin-bottom: 5px;
+	color: white;
+	cursor: pointer;
+}
+.div_souscripteur{
+	border: 1px solid #eee;
+	text-align: center;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+}
+
+.liste_sous_recents{
+	border-left: 2px solid #eee;
+	border-right: 2px solid #eee;
+	border-bottom: 2px solid #eee;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom-right-radius: 1px;
+	border-bottom-left-radius: 1px;
+}
+.texte{
+	font-size: 16px;
+	font-family: verdana;
+	font-weight: bold;
+}
+.number{
+	border:3px solid green;
+	background: green;
+	color: white;
+	border-radius: 6px
+}
+	
+
+
+
