@@ -8,6 +8,7 @@ use App\Http\Requests\ProjetUpdateRequest;
 use App\Projet;
 use View;
 use App\Categorie;
+use Illuminate\Support\Facades\DB;
 
 class ProjetController extends Controller
 {
@@ -77,7 +78,28 @@ class ProjetController extends Controller
     public function show($id)
     {
         $projet = $this->projetRepository->getById($id);
-        return view('projet/afficher-projet',  compact('projet'));
+        $query = DB::table('categories')->select('nom')->where('id' ,$projet->id)->get();
+        foreach ($query as  $value) {
+            $categorie =  $value->nom;
+        }
+        /* montant deja perçu */
+        $montant_recolte = $projet->somme_recoltee;
+
+        /* montant à collecter */
+        $montant_a_recolter = $projet->somme_a_recolter;
+       
+        /*calcul du pourcentage en recuperant l'entier suivant*/
+        $pourcentage = floor(($montant_recolte/$montant_a_recolter) * 100);
+
+        /* recuperer les souscriptions recentes d'un projet */
+        $last_donation = $this->projetRepository->lastSouscription($id);
+
+        /* recuperer le nombre de commentaire */
+        $comments = $this->projetRepository->count_commentaire($id);
+        $donation = $this->projetRepository->count_donation($id);
+        $commentaires = $this->projetRepository->select_commentaire($id);
+
+        return view('projet/project-details',compact('projet','categorie','pourcentage','last_donation','comments','donation','commentaires'));  
     }
 
     /**

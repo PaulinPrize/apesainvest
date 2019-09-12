@@ -21,20 +21,16 @@ class ProjectController extends Controller
         $this->projetRepository = $projetRepository;
     }
 
-
     public function show_project($id)
     {
         $projet = $this->projetRepository->getById($id);
-        $query = DB::table('categories')->select('nom')
-    	      ->where('id' ,$projet->id)
-    	      ->get();
-
+        $query = DB::table('categories')->select('nom')->where('id' ,$projet->id)->get();
     	foreach ($query as  $value) {
-       	 
-       	 $categorie =  $value->nom;
+       	    $categorie =  $value->nom;
         }
-         /* montant deja perçu */
+        /* montant deja perçu */
         $montant_recolte = $projet->somme_recoltee;
+
         /* montant à collecter */
         $montant_a_recolter = $projet->somme_a_recolter;
        
@@ -43,13 +39,13 @@ class ProjectController extends Controller
 
         /* recuperer les souscriptions recentes d'un projet */
         $last_donation = $this->projetRepository->lastSouscription($id);
-        /** recuperer le nombre de commentaire **/
+
+        /* recuperer le nombre de commentaire */
         $comments = $this->projetRepository->count_commentaire($id);
         $donation = $this->projetRepository->count_donation($id);
         $commentaires = $this->projetRepository->select_commentaire($id);
 
-        return view('projet/project-details',compact('projet','categorie','pourcentage','last_donation','comments','donation','commentaires'));
-        
+        return view('projet/project-details',compact('projet','categorie','pourcentage','last_donation','comments','donation','commentaires'));  
     }
 
     public function soutenir($id,$name)
@@ -71,7 +67,6 @@ class ProjectController extends Controller
     	$liste_pays = DB::table('tc_pays')->select('Commo_Name','ISO_3166_1_2_Letter_Code')->get();
 
     	return view('projet.donation',compact('projet','pourcentage','nom','photo','email','phone','liste_pays','id','name'));
-    	
     }
 
     private function calcul_pourcentage($montant_recolte,$montant_a_recolter)
@@ -145,7 +140,6 @@ class ProjectController extends Controller
         });*/
 
     	return response()->json($soutenirs);
-
     }
 
 

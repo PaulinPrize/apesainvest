@@ -35,11 +35,9 @@
                                 <td>{{$projet->somme_recoltee}}</td>
                                 <td>{{$projet->statut}}</td>
                                 <td width="10px">
-                                    @can('projet.show')
-                                        <a href="{{route('projet.show',$projet->id)}}" class="btn btn-md btn-success">
-                                            <span class="glyphicon glyphicon-eye-open"></span>
-                                        </a>
-                                    @endcan
+                                    <a href="{{route('project.details',$projet->id)}}" class="btn btn-md btn-success">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a>
                                 </td>
                                 <td width="10px">
                                     @can('projet.edit')
