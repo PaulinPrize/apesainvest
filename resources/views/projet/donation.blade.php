@@ -132,17 +132,14 @@
 
  </div>
 
- <script>
-     	  $(function(){
-              
-              $('#inputAction').on('click blur',function(){
-                /* calcul et mise à jour du montant apres le click */
-              	 var nbre_action = parseInt($(this).val());
-              	 var value = nbre_action * 10000;
-              	 $('#value').val(value);
-
-              });
-     	  })
- </script>
+<script>
+  $(function(){
+    $('#inputAction').on('click blur',function(){
+      var nbre_action = parseInt($(this).val());
+      var value = nbre_action * 10000;
+      $('#inputMontant').val(value);
+    });
+  })
+</script>
 @endsection
 

@@ -120,7 +120,21 @@ class ProjetRepository extends ResourceRepository
                 ->where('soutenirs.project_id',$id)->get();
     }
 
+    // Compter les projets non actifs
+    public function noActiveCount($projets = null)
+    {
+        if($projets) {
+            return $projets->where('statut', false)->count();
+        }
+        return Projet::where('statut', false)->count();
+    }
 
-
-
+    // Compter les projets obsolètes
+    public function obsoleteCount($projets = null)
+    {
+        if($projets) {
+            return $projets->where('statut', true)->where('limit', '<', Carbon::now())->count();
+        }
+        return Projet::where('limit', '<', Carbon::now())->count();
+    }
 }
