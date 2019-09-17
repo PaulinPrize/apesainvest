@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="container" style="border:1px solid red;margin-top: 33px;">
-    <div class="col-sm-12">
+    <div class="col-sm-12" style="margin-top: 50px">
       <h1 style="text-align:center">{{$projet->nom_du_projet}}</h1>
       <h6 style="text-align:center">Ajouté le {{$projet->created_at}}</h6>
       <h6 style="text-align:center">{{$projet->categorie->nom}}</h6>
@@ -55,8 +55,9 @@
       </div>
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding:15px;word-wrap:break-word;">
-          <p style="font-family: Times, serif; font-size:14pt; font-style:italic; font-variant: normal">
-            {{$projet->objectifs_du_projet}}
+          <p style="font-family: Times, serif; font-size:14pt; font-style:italic; font-variant: normal">     Objectif:<br>{{$projet->objectifs_du_projet}}
+          </p>
+          <p style="font-family: Times, serif; font-size:14pt; font-style:italic; font-variant: normal">     Enoncé du défi:<br>{{$projet->enonce_du_defi}}
           </p>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding:15px">
@@ -81,7 +82,10 @@
         <div class="col-lg-12">
           <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist" style="padding:20px;">
             <li class="nav-item">
-              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Documents</a>
+              <a class="nav-link active" id="pills-equipe-tab" data-toggle="pill" href="#pills-equipe" role="tab" aria-controls="pills-equipe" aria-selected="true">Equipe de projet</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Documents</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="pills-contributions-tab" data-toggle="pill" href="#pills-contributions" role="tab" aria-controls="pills-contributions" aria-selected="false">Contributions <span class="badge badge-pill badge-success">{{$donation}}</span></a>
@@ -92,29 +96,98 @@
           </ul>
         </div>
       </div>
-      <div class="row" style="border:1px solid purple">
-        <div class="col-lg-6" style="border:1px solid yellow">
+      <div class="row">
+        <div class="col-lg-8">
           <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-              <h3>Documents</h3>
+            <div class="tab-pane fade show active" id="pills-equipe" role="tabpanel" aria-labelledby="pills-equipe-tab" style="padding:20px">
+              <table class="table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Membre</th>
+                    <th scope="col">Fonction</th>
+                    <th scope="col">Curriculum Vitae</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{$projet->membre_un}}</td>
+                    <td>{{$projet->fonction_membre_un}}</td>
+                    <td>
+                      <a href="{{asset('storage/App/public/file/projets/cv/'.$projet->cv_membre_un)}}">Afficher</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{$projet->membre_deux}}</td>
+                    <td>{{$projet->fonction_membre_deux}}</td>
+                    <td><a href="{{asset('storage/App/public/file/projets/cv/'.$projet->cv_membre_deux)}}">Afficher</a></td>
+                  </tr>
+                  <tr>
+                    <td>{{$projet->membre_trois}}</td>
+                    <td>{{$projet->fonction_membre_trois}}</td>
+                    <td><a href="{{asset('storage/App/public/file/projets/cv/'.$projet->cv_membre_trois)}}">Afficher</a></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="tab-pane fade" id="pills-contributions" role="tabpanel" aria-labelledby="pills-contributions-tab">
-              <h3>Contributions</h3>
-            </div>
-            <div class="tab-pane fade" id="pills-commentaires" role="tabpanel" aria-labelledby="pills-commentaires-tab">
-              <h3>Commentaires</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="row" style="border:1px solid black; padding:20px">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
+            <div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" style="padding:20px">
               <ul class="list-group">
+                <li class="list-group-item" style="font-weight: bold">
+                  Documents
+                </li>
+                <li class="list-group-item"><a href="{{asset('storage/App/public/file/projets/resultats_finaux/'.$projet->planning)}}">Planning du projet</a></li>
+                <li class="list-group-item"><a href="{{asset('storage/App/public/file/projets/resultats_finaux/'.$projet->resultats_finaux)}}">resultats finaux</a></li>
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="pills-contributions" role="tabpanel" aria-labelledby="pills-contributions-tab" style="padding:20px">
+              <ul class="list-group">
+                <li class="list-group-item" style="font-weight: bold">
+                  Contributions
+                </li>
                 @foreach($last_donation as $element)
                   <li class="list-group-item">
                     <div class="media">
-                      <img class="mr-3" src="../64x64" width="40" height="40">
+                      <img class="mr-3" src="{{asset('public/img/avatars/'. $element->photo)}} " width="40" height="40">
+                      <div class="media-body">
+                        <h5 class="mt-0">{{$element->name}}</h5>
+                        <small style="color: green; font-weight: bold">XAF {{$element->montant}}</small> <br><small>il y'a {{$diff = Carbon\Carbon::parse($element->date)->diffInDays()}} jours</small>
+                      </div>
+                    </div>
+                  </li>
+                @endforeach 
+              </ul>
+            </div>
+            <div class="tab-pane fade" id="pills-commentaires" role="tabpanel" aria-labelledby="pills-commentaires-tab" style="padding:20px">
+              <ul class="list-group">
+                <li class="list-group-item" style="font-weight: bold">
+                  Commentaires
+                </li>
+                @foreach($commentaires as $comments)
+                  <li class="list-group-item">
+                    <div class="media">
+                      <img class="mr-3" src="{{asset('public/img/avatars/'. $comments->photo)}}" width="40" height="40">
+                      <div class="media-body">
+                        <h5 class="mt-0">{{$comments->name}} </h5>
+                        <small>{{$comments->commentaire}}</small>
+                      </div>
+                    </div>
+                  </li>
+                @endforeach 
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="row" style="padding:18px">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+              <ul class="list-group">
+                <li class="list-group-item" style="font-weight: bold">
+                  Contributions récentes
+                </li>
+                @foreach($last_donation as $element)
+                  <li class="list-group-item">
+                    <div class="media">
+                      <img class="mr-3" src="{{asset('public/img/avatars/'. $element->photo)}} " width="40" height="40">
                       <div class="media-body">
                         <h5 class="mt-0">{{$element->name}}</h5>
                         <small style="color: green; font-weight: bold">XAF {{$element->montant}}</small> <br><small style="word-wrap:break-word;">{{$element->commentaire}}. </small><br><small>il y'a {{$diff = Carbon\Carbon::parse($element->date)->diffInDays()}} jours</small>
@@ -127,31 +200,10 @@
           </div>
         </div>
       </div>
-      @endauth 
+      @endauth                    
+    </div>
 
-    
-
-
-
-
-
-   
-    
-
-       
-
-          
-
-           
-           
-           
-
-
-
-                    
-     </div>
-
-     <script>
+    <script>
      	  $(function(){
            $('#facebook').on('click',function(){
               var shareurl = $(this).data('shareurl');

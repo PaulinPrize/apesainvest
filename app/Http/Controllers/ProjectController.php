@@ -45,6 +45,9 @@ class ProjectController extends Controller
         $donation = $this->projetRepository->count_donation($id);
         $commentaires = $this->projetRepository->select_commentaire($id);
 
+        // Récupérer les informations sur l'équipe de projet
+        
+
         return view('projet/project-details',compact('projet','categorie','pourcentage','last_donation','comments','donation','commentaires'));  
     }
 

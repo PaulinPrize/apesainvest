@@ -139,7 +139,7 @@
                 <hr></hr>
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                        Copyright © 2017-2019 Apesa Fund. Tous droits réservés. <a href="">Design by Paulin Priso</a><br/>
+                        Copyright © 2017-2019 Apesa Fund. Tous droits réservés. <a href="">Design by Paulin Priso & Advisor</a><br/>
                         <a href="#" class="liensPiedDePage"><i class="social fa fa-facebook" aria-hidden="true"></i></a>
                         <a href="#" class="liensPiedDePage"><i class="social fa fa-twitter" aria-hidden="true"></i></a>
                         <a href="#" class="liensPiedDePage"><i class="social fa fa-linkedin" aria-hidden="true"></i></a>

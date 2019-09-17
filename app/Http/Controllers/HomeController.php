@@ -39,7 +39,7 @@ class HomeController extends Controller
         /* Renvoyer tous les projets
         $projets = $this->projetRepository->getPaginate($this->nbrPages); */
         // Renvoyer les projets actifs
-        $projets = DB::table('projets')->select('projets.id', 'name', 'photo', 'photo_projet', 'nom_du_projet', 'enonce_du_defi', 'somme_recoltee', 'somme_a_recolter', 'date_fin_mise_en_oeuvre')->join('users', 'projets.user_id', '=', 'users.id')->where('statut', '=', 1)->paginate(8);
+        $projets = DB::table('projets')->select('projets.id', 'name', 'photo', 'photo_projet', 'nom_du_projet', 'enonce_du_defi', 'somme_recoltee', 'somme_a_recolter', 'date_fin_mise_en_oeuvre')->join('users', 'projets.user_id', '=', 'users.id')->where('statut', '=', 1)->paginate(8);  
         // Renvoyer toutes les catégories
         $categories = $this->categorieRepository->getPaginate($this->nbrParPages);
         return view('welcome', compact('projets', 'links','categories'));    
