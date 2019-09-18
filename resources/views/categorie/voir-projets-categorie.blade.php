@@ -56,10 +56,10 @@
                                 {{ $projet->somme_recoltee }} / {{ $projet->somme_a_recolter }} XAF
                             </small>
                             <div class="pull-right">
-                                <small>25%</small>
+                                <small>{{ceil(($projet->somme_recoltee/$projet->somme_a_recolter)*100)}}%</small>
                             </div>
                             <div class="progress" style="height: 5px;">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>          
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ceil(($projet->somme_recoltee/$projet->somme_a_recolter)*100)}}%" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>          
                             </div>
                             <div class="pull-right">
                                 <small>
@@ -81,9 +81,9 @@
         </div>
         <br/>
         <div class="d-flex justify-content-center">
-            <a href="#" class=" btn btn-lg btn-primary">
-                Afficher tous les projets
-            </a>
+            <button class=" btn btn-lg btn-primary">
+                Afficher plus de projets
+            </button>
         </div>
         <br/><br/><br/><br/>
         <P class="titleStyle">Secteurs d'investissement<P/>
@@ -97,17 +97,35 @@
                 </div>
             @endforeach
         </div>
+        <br/><br/>
+        <div class="d-flex justify-content-center">
+            <a href="#" class=" btn btn-lg btn-primary">
+                Lancer mon projet
+            </a>
+        </div>
         <br/><br/><br/><br/>       
     </div>
+
+<!--
+           Tout ce qui suit a ete fait par advisor
+                 cordialement 
+                            -->
     <script>
-        $('.effet').hover(function(){
-            $(this).css('border-color','#90EE90')
-            $(this).children().next().next().css('background-color','#90EE90')
-        })
-        $('.effet').mouseleave(function(){
-            $(this).css('border-color','')
-            $(this).children().next().next().css('background-color','')
-        })
+         $(function(){
+           
+            /**** action lors du passage de la souris*****/
+                
+                $('.effet').hover(function(){
+
+                     $(this).css('border-color','#90EE90')
+                     $(this).children().next().next().css('background-color','#90EE90')
+                })
+               
+                $('.effet').mouseleave(function(){
+                     $(this).css('border-color','')
+                     $(this).children().next().next().css('background-color','')
+                })
+         });
     </script>
 @endsection
 

@@ -36,7 +36,7 @@ class ProjetRepository extends ResourceRepository
 
     public function store($request)
     {
-        $cv_membre_un = basename($request->cv_membre_un->store('img/projets/cv'));
+        $cv_membre_un = basename($request->cv_membre_un->store('img/projets/cv'));  
         $cv_membre_deux = basename($request->cv_membre_deux->store('img/projets/cv'));
         $cv_membre_trois = basename($request->cv_membre_trois->store('img/projets/cv'));
         $planning = basename($request->planning->store('img/projets/planning'));
@@ -94,7 +94,14 @@ class ProjetRepository extends ResourceRepository
         return DB::table('soutenirs')
                 ->join('users', 'users.id', '=', 'soutenirs.user_id')
                 ->select('name','photo','soutenirs.created_at as date','montant','country','commentaire')   
-                ->where('soutenirs.project_id',$id)->get();
+                ->where('soutenirs.project_id',$id)->orderBy('soutenirs.id','desc')->limit(5)->get();
+    }
+
+    public function lastTwentySouscription($id){
+        return DB::table('soutenirs')
+                ->join('users', 'users.id', '=', 'soutenirs.user_id')
+                ->select('name','photo','soutenirs.created_at as date','montant','country','commentaire')   
+                ->where('soutenirs.project_id',$id)->orderBy('soutenirs.id','desc')->limit(20)->get();
     }
 
     public function count_commentaire($id)
@@ -117,7 +124,12 @@ class ProjetRepository extends ResourceRepository
        return DB::table('soutenirs')
                 ->join('users', 'users.id', '=', 'soutenirs.user_id')
                 ->select('name','photo','soutenirs.created_at as date','montant','country','commentaire')   
-                ->where('soutenirs.project_id',$id)->get();
+                ->where('soutenirs.project_id',$id)->orderBy('soutenirs.id','desc')->limit(5)->get();
+    }
+
+    public function projectCategory($id)
+    {
+       return $projets = DB::table('projets')->select('projets.id', 'name', 'photo', 'photo_projet', 'nom_du_projet', 'enonce_du_defi', 'somme_recoltee', 'somme_a_recolter', 'date_fin_mise_en_oeuvre')->join('users', 'projets.user_id', '=', 'users.id')->where('statut', '=', 1)->where('categorie_id',$id)->paginate(8);
     }
 
     // Compter les projets non actifs

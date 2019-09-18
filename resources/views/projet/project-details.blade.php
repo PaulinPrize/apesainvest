@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container" style="border:1px solid red;margin-top: 33px;">
+  <div class="container" style="margin-top: 34px;">
     <div class="col-sm-12" style="margin-top: 50px">
       <h1 style="text-align:center">{{$projet->nom_du_projet}}</h1>
       <h6 style="text-align:center">Ajouté le {{$projet->created_at}}</h6>
@@ -27,7 +27,7 @@
             <div class="col-lg-12">
               <div class="row">
                 <div class="col-lg-4">
-                  <h6><strong>2</strong> <br>Contributeur(s)</h6>
+                  <h6><strong>{{$donation}}</strong> <br>Contributeur(s)</h6>
                 </div>
                 <div class="col-lg-4">
                   <h6><strong>{{ $diff = Carbon\Carbon::parse($projet->date_fin_mise_en_oeuvre)->diffInDays() }}</strong> <br>Jour(s) avant la fin</h6>
@@ -113,18 +113,18 @@
                     <td>{{$projet->membre_un}}</td>
                     <td>{{$projet->fonction_membre_un}}</td>
                     <td>
-                      <a href="{{asset('storage/App/public/file/projets/cv/'.$projet->cv_membre_un)}}">Afficher</a>
+                      <a href="{{asset('public/img/projets/cv/'.$projet->cv_membre_un)}}">Afficher</a>
                     </td>
                   </tr>
                   <tr>
                     <td>{{$projet->membre_deux}}</td>
                     <td>{{$projet->fonction_membre_deux}}</td>
-                    <td><a href="{{asset('storage/App/public/file/projets/cv/'.$projet->cv_membre_deux)}}">Afficher</a></td>
+                    <td><a href="{{asset('public/img/projets/cv/'.$projet->cv_membre_deux)}}">Afficher</a></td>
                   </tr>
                   <tr>
                     <td>{{$projet->membre_trois}}</td>
                     <td>{{$projet->fonction_membre_trois}}</td>
-                    <td><a href="{{asset('storage/App/public/file/projets/cv/'.$projet->cv_membre_trois)}}">Afficher</a></td>
+                    <td><a href="{{asset('public/img/projets/cv/'.$projet->cv_membre_trois)}}">Afficher</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -134,8 +134,8 @@
                 <li class="list-group-item" style="font-weight: bold">
                   Documents
                 </li>
-                <li class="list-group-item"><a href="{{asset('storage/App/public/file/projets/resultats_finaux/'.$projet->planning)}}">Planning du projet</a></li>
-                <li class="list-group-item"><a href="{{asset('storage/App/public/file/projets/resultats_finaux/'.$projet->resultats_finaux)}}">resultats finaux</a></li>
+                <li class="list-group-item"><a href="{{asset('public/img/projets/planning/'.$projet->planning)}}">Planning du projet</a></li>
+                <li class="list-group-item"><a href="{{asset('public/img/projets/resultats_finaux/'.$projet->resultats_finaux)}}">resultats finaux</a></li>
               </ul>
             </div>
             <div class="tab-pane fade" id="pills-contributions" role="tabpanel" aria-labelledby="pills-contributions-tab" style="padding:20px">
@@ -143,7 +143,7 @@
                 <li class="list-group-item" style="font-weight: bold">
                   Contributions
                 </li>
-                @foreach($last_donation as $element)
+                @foreach($last_20_donation as $element)
                   <li class="list-group-item">
                     <div class="media">
                       <img class="mr-3" src="{{asset('public/img/avatars/'. $element->photo)}} " width="40" height="40">

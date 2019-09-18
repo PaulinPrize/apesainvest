@@ -10,15 +10,17 @@ use App\Http\Requests\DonationRequest;
 use App\Soutenirs;
 use Illuminate\Support\Facades\Input;
 use Mail;
+use App\Repositories\CategorieRepository;
 
 class ProjectController extends Controller
 {
     protected $projetRepository;
+    protected $categorieRepository;
 
-
-    public function __construct(ProjetRepository $projetRepository)
+    public function __construct(ProjetRepository $projetRepository,CategorieRepository $categorieRepository)
     {
         $this->projetRepository = $projetRepository;
+        $this->categorieRepository = $categorieRepository;
     }
 
     public function show_project($id)
@@ -39,16 +41,14 @@ class ProjectController extends Controller
 
         /* recuperer les souscriptions recentes d'un projet */
         $last_donation = $this->projetRepository->lastSouscription($id);
+        $last_20_donation = $this->projetRepository->lastTwentySouscription($id);
 
         /* recuperer le nombre de commentaire */
         $comments = $this->projetRepository->count_commentaire($id);
         $donation = $this->projetRepository->count_donation($id);
-        $commentaires = $this->projetRepository->select_commentaire($id);
+        $commentaires = $this->projetRepository->select_commentaire($id);       
 
-        // Récupérer les informations sur l'équipe de projet
-        
-
-        return view('projet/project-details',compact('projet','categorie','pourcentage','last_donation','comments','donation','commentaires'));  
+        return view('projet/project-details',compact('projet','categorie','pourcentage','last_donation','comments','donation','commentaires', 'last_20_donation'));  
     }
 
     public function soutenir($id,$name)
@@ -143,6 +143,14 @@ class ProjectController extends Controller
         });*/
 
     	return response()->json($soutenirs);
+    }
+
+    public function projectCategory($id)
+    {
+       $projets = $this->projetRepository->projectCategory($id);
+       $categories = $this->categorieRepository->getPaginate(6);
+
+        return view('categorie.voir-projets-categorie', compact('projets', 'categories'));  
     }
 
 

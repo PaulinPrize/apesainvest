@@ -35,8 +35,8 @@ class CreateProjetsTable extends Migration
 
             $table->string('nom_du_projet');
             $table->string('photo_projet');
-            $table->string('enonce_du_defi');
-            $table->string('objectifs_du_projet');
+            $table->string('enonce_du_defi', 255);
+            $table->string('objectifs_du_projet', 255);
             $table->integer('somme_a_recolter');
             $table->datetime('date_debut_mise_en_oeuvre');
             $table->datetime('date_fin_mise_en_oeuvre');

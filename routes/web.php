@@ -134,6 +134,7 @@ Route::get('categorie/show/{id}','CategorieController@show')->name('categorie.sh
 Route::get('categorie/{id}/edit','CategorieController@edit')->name('categorie.edit');
 Route::put('categorie/update/{id}','CategorieController@update')->name('categorie.update');
 Route::delete('categorie/destroy/{id}','CategorieController@destroy')->name('categorie.destroy');
+Route::get('project/{id}/category','ProjectController@projectCategory')->name('project.category');
 
 /*************************     
           Intervention de l'advisor Laravel
