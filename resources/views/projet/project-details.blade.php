@@ -2,10 +2,10 @@
 
 @section('content')
   <div class="container" style="margin-top: 34px;">
-    <div class="col-sm-12" style="margin-top: 50px">
-      <h1 style="text-align:center">{{$projet->nom_du_projet}}</h1>
-      <h6 style="text-align:center">Ajouté le {{$projet->created_at}}</h6>
-      <h6 style="text-align:center">{{$projet->categorie->nom}}</h6>
+    <div class="col-sm-12" style="margin-top: 100px;">
+      <h1 class="text-center">{{$projet->nom_du_projet}}</h1>
+      <h6 class="text-center">Ajouté le {{$projet->created_at}}</h6>
+      <h6 class="text-center">{{$projet->categorie->nom}}</h6>
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="padding:15px">
           <img src="{{asset('public/img/projets/logo/images/'. $projet->photo_projet)}}" width="100%" height="100%" alt="image du projet">
@@ -224,3 +224,4 @@
      	  })
      </script>
 @endsection
+

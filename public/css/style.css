@@ -80,11 +80,10 @@
   font-weight: bold; 
 }
 .blocck{
-	border: 2px solid #eee;
+	padding:10px;
+	border:2px solid #eee;
 	border-radius: 6px;
-	height: 180px;
-	margin-top:15px;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 }
 
 #blocck{

@@ -81,9 +81,9 @@
         </div>
         <br/>
         <div class="d-flex justify-content-center">
-            <a href="#" class=" btn btn-lg btn-primary">
-                Afficher tous les projets
-            </a>
+            <button class=" btn btn-lg btn-primary">
+                Afficher plus de projets
+            </button>
         </div>
         <br/><br/><br/><br/>
         <P class="titleStyle">Secteurs d'investissement<P/>
